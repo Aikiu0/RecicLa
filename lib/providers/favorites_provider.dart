@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-// CONTRATO: el Integrante 2 llena estos metodos en su rama.
-// Ya existen para que Home y Detalle compilen desde el dia 1.
 class FavoritesProvider extends ChangeNotifier {
-  List<String> get ids => [];
+  final List<String> _ids = [];
 
-  bool esFavorito(String id) => false;
+  List<String> get ids => List.unmodifiable(_ids);
 
-  void alternar(String id) {}
+  bool esFavorito(String id) => _ids.contains(id);
+
+  void alternar(String id) {
+    if (_ids.contains(id)) {
+      _ids.remove(id);
+    } else {
+      _ids.add(id);
+    }
+    notifyListeners();
+  }
 }

@@ -64,7 +64,12 @@ class CenterCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
-                    Text(centro.direccion, style: textos.bodySmall),
+                    Text(
+                      centro.direccion,
+                      style: textos.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       materiales,
