@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/adaptable.dart';
 import '../../core/widgets/custom_button.dart';
-import '../home/home_screen.dart';
+import '../shell/main_shell.dart';
 
 class _Pagina {
   final IconData icono;
@@ -52,7 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _irAlInicio() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const HomeScreen()),
+      MaterialPageRoute(builder: (_) => const MainShell()),
     );
   }
 
