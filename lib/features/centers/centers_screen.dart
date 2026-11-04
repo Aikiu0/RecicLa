@@ -5,6 +5,7 @@ import '../../core/widgets/center_card.dart';
 import '../../models/recycling_center.dart';
 import '../../providers/centers_provider.dart';
 import 'center_detail_screen.dart';
+import '../../models/tipo_material.dart';
 
 class CentersScreen extends StatelessWidget {
   const CentersScreen({super.key});
@@ -13,6 +14,22 @@ class CentersScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => CenterDetailScreen(centro: centro)),
+    );
+  }
+
+  Widget _chip(
+    BuildContext context,
+    String texto,
+    TipoMaterial? material,
+    TipoMaterial? actual,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: ChoiceChip(
+        label: Text(texto),
+        selected: actual == material,
+        onSelected: (_) => context.read<CentersProvider>().filtrarPor(material),
+      ),
     );
   }
 
@@ -36,6 +53,17 @@ class CentersScreen extends StatelessWidget {
               ),
               onChanged: (texto) =>
                   context.read<CentersProvider>().buscar(texto),
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                _chip(context, 'Todos', null, provider.filtro),
+                for (final m in TipoMaterial.values)
+                  _chip(context, m.etiqueta, m, provider.filtro),
+              ],
             ),
           ),
           Expanded(child: _buildLista(context, provider.cargando, centros)),
