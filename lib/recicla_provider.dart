@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'models/registro_model.dart';
 
-// Igual que CartProvider en Vivero: guarda lo que comparten varias pantallas.
 class ReciclaProvider extends ChangeNotifier {
   final List<int> _favoritos = [];
   final List<Registro> _registros = [];
 
-  // ---------- Favoritos ----------
   List<int> get favoritos => _favoritos;
 
   int get cantidadFavoritos => _favoritos.length;
@@ -23,7 +21,6 @@ class ReciclaProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ---------- Seguimiento ----------
   List<Registro> get registros => _registros;
 
   double get totalKilos => _registros.fold(0, (suma, r) => suma + r.kilos);
@@ -34,8 +31,22 @@ class ReciclaProvider extends ChangeNotifier {
     return 'Eco heroe';
   }
 
-  void agregarRegistro(Registro registro) {
-    _registros.add(registro);
+  String? agregarRegistro(String material, String textoKilos) {
+    final texto = textoKilos.trim().replaceAll(',', '.');
+    if (texto.isEmpty) {
+      return 'Escribe cuántos kilos reciclaste.';
+    }
+    final kilos = double.tryParse(texto);
+    if (kilos == null) {
+      return 'Escribe solo números, por ejemplo 1.5';
+    }
+    if (kilos <= 0) {
+      return 'Los kilos deben ser mayores que 0.';
+    }
+    _registros.add(
+      Registro(material: material, kilos: kilos, fecha: DateTime.now()),
+    );
     notifyListeners();
+    return null;
   }
 }

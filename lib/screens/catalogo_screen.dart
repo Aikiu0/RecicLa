@@ -15,7 +15,6 @@ class CatalogoScreen extends StatefulWidget {
 }
 
 class _CatalogoScreenState extends State<CatalogoScreen> {
-  final List<Centro> centros = CentroRepo().obtenerCentros();
   String matSelec = 'Todos';
   String texBus = '';
 
@@ -25,21 +24,10 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
     matSelec = widget.materialInicial;
   }
 
-  List<Centro> get centrosFiltrados {
-    return centros.where((centro) {
-      final coincideMaterial =
-          matSelec == 'Todos' || centro.materiales.contains(matSelec);
-      final coincideBusqueda = centro.nombre.toLowerCase().contains(
-        texBus.toLowerCase(),
-      );
-      return coincideMaterial && coincideBusqueda;
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     final filtros = ['Todos'] + materialesDemo;
-    final lista = centrosFiltrados;
+    final lista = CentroRepo().filtrar(texBus, matSelec);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Centros de acopio')),

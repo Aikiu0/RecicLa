@@ -5,7 +5,6 @@ import '../models/centro_model.dart';
 import '../core/core_theme.dart';
 import '../core/custom_button.dart';
 import '../recicla_provider.dart';
-import '../models/registro_model.dart';
 
 class SeguimientoScreen extends StatefulWidget {
   const SeguimientoScreen({super.key});
@@ -26,31 +25,17 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
   }
 
   void _registrar() {
-    final texto = _kilosCtrl.text.trim().replaceAll(',', '.');
-
-    // Validaciones del formulario
-    if (texto.isEmpty) {
-      setState(() => error = 'Escribe cuántos kilos reciclaste.');
-      return;
-    }
-    final kilos = double.tryParse(texto);
-    if (kilos == null) {
-      setState(() => error = 'Escribe solo números, por ejemplo 1.5');
-      return;
-    }
-    if (kilos <= 0) {
-      setState(() => error = 'Los kilos deben ser mayores que 0.');
-      return;
-    }
-
-    context.read<ReciclaProvider>().agregarRegistro(
-      Registro(material: matSelec, kilos: kilos, fecha: DateTime.now()),
+    final mensaje = context.read<ReciclaProvider>().agregarRegistro(
+      matSelec,
+      _kilosCtrl.text,
     );
-    _kilosCtrl.clear();
-    setState(() => error = null);
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Registro guardado')));
+    setState(() => error = mensaje);
+    if (mensaje == null) {
+      _kilosCtrl.clear();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Registro guardado')));
+    }
   }
 
   @override
@@ -65,7 +50,6 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              // --- FORMULARIO ---
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -157,7 +141,6 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
               ),
               const SizedBox(height: 16),
 
-              // --- RESUMEN ---
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -184,7 +167,6 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
               ),
               const SizedBox(height: 24),
 
-              // --- HISTORIAL ---
               const Text(
                 'Historial',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

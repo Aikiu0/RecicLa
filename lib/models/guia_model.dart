@@ -10,7 +10,6 @@ class GuiaMaterial {
   });
 }
 
-// Cambien esta linea por la fuente real que consultaron.
 const String fuenteGuia =
     'Fuente: PENDIENTE (documento, institucion y anio que consultaron)';
 

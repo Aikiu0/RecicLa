@@ -47,7 +47,6 @@ class CentroCard extends StatelessWidget {
                   width: 70,
                   height: 70,
                   fit: BoxFit.cover,
-                  // Si no existe la imagen, se pone un icono en su lugar.
                   errorBuilder: (context, error, stackTrace) => Container(
                     width: 70,
                     height: 70,

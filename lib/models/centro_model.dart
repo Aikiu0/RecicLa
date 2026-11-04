@@ -20,7 +20,6 @@ class Centro {
   String get rutaImagen => '$kRutaImagenes$imagen';
 }
 
-// Materiales que se pueden filtrar en el catalogo.
 const List<String> materialesDemo = [
   'Plástico',
   'Vidrio',
@@ -30,7 +29,6 @@ const List<String> materialesDemo = [
   'Electrónicos',
 ];
 
-// Datos de ejemplo. Cambien nombres y direcciones por centros reales.
 const List<Centro> centrosDemo = [
   Centro(
     id: 1,

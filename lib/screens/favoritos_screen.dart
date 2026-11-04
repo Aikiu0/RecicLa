@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../core/centro_card.dart';
-import '../models/centro_model.dart';
 import '../data/centro_repo.dart';
 import '../core/core_theme.dart';
 import 'detalle_screen.dart';
@@ -14,10 +13,7 @@ class FavoritosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ids = context.watch<ReciclaProvider>().favoritos;
-    final List<Centro> favoritos = CentroRepo()
-        .obtenerCentros()
-        .where((centro) => ids.contains(centro.id))
-        .toList();
+    final favoritos = CentroRepo().obtenerPorIds(ids);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Mis favoritos')),
