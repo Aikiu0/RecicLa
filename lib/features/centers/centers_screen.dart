@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/widgets/center_card.dart';
+import '../../core/widgets/adaptable.dart';
+import '../../core/widgets/lista_centros.dart';
 import '../../models/recycling_center.dart';
+import '../../models/tipo_material.dart';
 import '../../providers/centers_provider.dart';
 import 'center_detail_screen.dart';
-import '../../models/tipo_material.dart';
 
 class CentersScreen extends StatelessWidget {
   const CentersScreen({super.key});
@@ -37,37 +38,49 @@ class CentersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.watch<CentersProvider>();
     final centros = provider.centrosFiltrados;
+    final total = centros.length;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Centros de acopio')),
-      body: Column(
-        children: [
-          // Paso 2: buscador. Paso 3: chips.
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-            child: TextFormField(
-              initialValue: provider.busqueda,
-              decoration: const InputDecoration(
-                hintText: 'Buscar por nombre',
-                prefixIcon: Icon(Icons.search),
+      body: ContenidoCentrado(
+        anchoMaximo: 1000,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+              child: TextFormField(
+                initialValue: provider.busqueda,
+                decoration: const InputDecoration(
+                  hintText: 'Buscar por nombre',
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: (texto) =>
+                    context.read<CentersProvider>().buscar(texto),
               ),
-              onChanged: (texto) =>
-                  context.read<CentersProvider>().buscar(texto),
             ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                _chip(context, 'Todos', null, provider.filtro),
-                for (final m in TipoMaterial.values)
-                  _chip(context, m.etiqueta, m, provider.filtro),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  _chip(context, 'Todos', null, provider.filtro),
+                  for (final m in TipoMaterial.values)
+                    _chip(context, m.etiqueta, m, provider.filtro),
+                ],
+              ),
             ),
-          ),
-          Expanded(child: _buildLista(context, provider.cargando, centros)),
-        ],
+            if (!provider.cargando)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                child: Text(
+                  total == 1 ? '1 centro' : '$total centros',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+            Expanded(child: _buildLista(context, provider.cargando, centros)),
+          ],
+        ),
       ),
     );
   }
@@ -85,16 +98,9 @@ class CentersScreen extends StatelessWidget {
         child: Text('No encontramos centros con esos filtros.'),
       );
     }
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: centros.length,
-      itemBuilder: (context, i) {
-        final centro = centros[i];
-        return CenterCard(
-          centro: centro,
-          onTap: () => _abrirDetalle(context, centro),
-        );
-      },
+    return ListaCentros(
+      centros: centros,
+      onTap: (centro) => _abrirDetalle(context, centro),
     );
   }
 }
