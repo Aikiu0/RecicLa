@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_theme.dart';
-import '../onboarding/onboarding_screen.dart';
+import 'core_theme.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       );
     });
   }
@@ -29,23 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: AppColors.primario,
       body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 140,
-              height: 140,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.15),
-                shape: BoxShape.circle,
-              ),
-              child: Image.asset(
-                'assets/images/logo.png',
-                width: 88,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.recycling, size: 80, color: Colors.white),
-              ),
-            ),
+            Image.asset('assets/images/logo.png', width: 140, height: 140),
             const SizedBox(height: 16),
             const Text(
               'RecicLa',
