@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'centro_model.dart';
-import 'core_theme.dart';
-import 'custom_button.dart';
-import 'recicla_provider.dart';
-import 'registro_model.dart';
+import '../models/centro_model.dart';
+import '../core/core_theme.dart';
+import '../core/custom_button.dart';
+import '../recicla_provider.dart';
+import '../models/registro_model.dart';
 
 class SeguimientoScreen extends StatefulWidget {
   const SeguimientoScreen({super.key});

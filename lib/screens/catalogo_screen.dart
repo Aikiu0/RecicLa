@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'centro_card.dart';
-import 'centro_model.dart';
-import 'centro_repo.dart';
+import '../core/centro_card.dart';
+import '../models/centro_model.dart';
+import '../data/centro_repo.dart';
 import 'detalle_screen.dart';
 
 class CatalogoScreen extends StatefulWidget {

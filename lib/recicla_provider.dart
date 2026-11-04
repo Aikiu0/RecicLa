@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'registro_model.dart';
+import 'models/registro_model.dart';
 
 // Igual que CartProvider en Vivero: guarda lo que comparten varias pantallas.
 class ReciclaProvider extends ChangeNotifier {

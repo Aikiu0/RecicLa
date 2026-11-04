@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core_theme.dart';
+import '../core/core_theme.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {

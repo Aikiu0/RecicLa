@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core_theme.dart';
+import '../core/core_theme.dart';
 import 'home_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {

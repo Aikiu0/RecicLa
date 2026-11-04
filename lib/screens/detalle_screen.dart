@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'centro_model.dart';
-import 'core_theme.dart';
-import 'custom_button.dart';
-import 'recicla_provider.dart';
+import '../models/centro_model.dart';
+import '../core/core_theme.dart';
+import '../core/custom_button.dart';
+import '../recicla_provider.dart';
 
 class DetalleScreen extends StatelessWidget {
   final Centro centro;

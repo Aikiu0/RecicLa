@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'centro_card.dart';
-import 'centro_model.dart';
-import 'centro_repo.dart';
-import 'core_theme.dart';
+import '../core/centro_card.dart';
+import '../models/centro_model.dart';
+import '../data/centro_repo.dart';
+import '../core/core_theme.dart';
 import 'detalle_screen.dart';
-import 'recicla_provider.dart';
+import '../recicla_provider.dart';
 
 class FavoritosScreen extends StatelessWidget {
   const FavoritosScreen({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'catalogo_screen.dart';
-import 'core_theme.dart';
-import 'custom_button.dart';
-import 'guia_model.dart';
+import '../core/core_theme.dart';
+import '../core/custom_button.dart';
+import '../models/guia_model.dart';
 
 class GuiaScreen extends StatelessWidget {
   const GuiaScreen({super.key});

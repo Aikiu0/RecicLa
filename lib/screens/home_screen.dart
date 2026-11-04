@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'catalogo_screen.dart';
-import 'core_theme.dart';
-import 'custom_button.dart';
+import '../core/core_theme.dart';
+import '../core/custom_button.dart';
 import 'favoritos_screen.dart';
 import 'guia_screen.dart';
-import 'recicla_provider.dart';
+import '../recicla_provider.dart';
 import 'seguimiento_screen.dart';
 
 class HomeScreen extends StatelessWidget {
