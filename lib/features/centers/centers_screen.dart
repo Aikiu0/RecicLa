@@ -26,6 +26,18 @@ class CentersScreen extends StatelessWidget {
       body: Column(
         children: [
           // Paso 2: buscador. Paso 3: chips.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: TextFormField(
+              initialValue: provider.busqueda,
+              decoration: const InputDecoration(
+                hintText: 'Buscar por nombre',
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (texto) =>
+                  context.read<CentersProvider>().buscar(texto),
+            ),
+          ),
           Expanded(child: _buildLista(context, provider.cargando, centros)),
         ],
       ),
