@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/adaptable.dart';
+import '../../core/widgets/custom_button.dart';
 import '../../data/guia_local.dart';
 import '../../models/guia_material.dart';
+import '../../providers/centers_provider.dart';
+import '../centers/centers_screen.dart';
 
 class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
@@ -49,6 +53,19 @@ class GuideScreen extends StatelessWidget {
           Text('Evita', style: textos.titleSmall),
           const SizedBox(height: 4),
           Text(guia.evitar),
+          const SizedBox(height: 12),
+          CustomButton(
+            texto: 'Ver centros que lo reciben',
+            icono: Icons.location_on,
+            secundario: true,
+            onPressed: () {
+              context.read<CentersProvider>().filtrarPor(guia.material);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CentersScreen()),
+              );
+            },
+          ),
         ],
       ),
     );
