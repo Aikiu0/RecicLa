@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/centro_model.dart';
 import '../core/core_theme.dart';
+import '../core/opcion_chip.dart';
 import '../core/custom_button.dart';
 import '../recicla_provider.dart';
 
@@ -32,9 +33,6 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
     setState(() => error = mensaje);
     if (mensaje == null) {
       _kilosCtrl.clear();
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Registro guardado')));
     }
   }
 
@@ -76,10 +74,10 @@ class _SeguimientoScreenState extends State<SeguimientoScreen> {
                         children: materialesDemo.map((material) {
                           return Padding(
                             padding: const EdgeInsets.only(right: 8),
-                            child: ChoiceChip(
-                              label: Text(material),
-                              selected: material == matSelec,
-                              onSelected: (_) {
+                            child: OpcionChip(
+                              texto: material,
+                              seleccionado: material == matSelec,
+                              onTap: () {
                                 setState(() {
                                   matSelec = material;
                                 });

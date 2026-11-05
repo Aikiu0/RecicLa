@@ -96,15 +96,6 @@ class DetalleScreen extends StatelessWidget {
                   icono: esFavorito ? Icons.favorite : Icons.favorite_border,
                   onPressed: () {
                     context.read<ReciclaProvider>().alternarFavorito(centro.id);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          esFavorito
-                              ? '${centro.nombre} se quitó de favoritos'
-                              : '${centro.nombre} se guardó en favoritos',
-                        ),
-                      ),
-                    );
                   },
                 ),
               ],

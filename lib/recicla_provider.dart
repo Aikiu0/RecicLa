@@ -32,11 +32,10 @@ class ReciclaProvider extends ChangeNotifier {
   }
 
   String? agregarRegistro(String material, String textoKilos) {
-    final texto = textoKilos.trim().replaceAll(',', '.');
-    if (texto.isEmpty) {
+    if (textoKilos.isEmpty) {
       return 'Escribe cuántos kilos reciclaste.';
     }
-    final kilos = double.tryParse(texto);
+    final kilos = double.tryParse(textoKilos);
     if (kilos == null) {
       return 'Escribe solo números, por ejemplo 1.5';
     }
