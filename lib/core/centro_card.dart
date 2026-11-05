@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../../models/recycling_center.dart';
-import '../theme/app_theme.dart';
+import 'core_theme.dart';
 
-class CenterCard extends StatelessWidget {
-  final RecyclingCenter centro;
+class CentroCard extends StatelessWidget {
+  final String nombre;
+  final String direccion;
+  final String materiales;
+  final String rutaImagen;
   final VoidCallback onTap;
 
-  const CenterCard({super.key, required this.centro, required this.onTap});
+  const CentroCard({
+    super.key,
+    required this.nombre,
+    required this.direccion,
+    required this.materiales,
+    required this.rutaImagen,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final materiales = centro.materiales.map((m) => m.etiqueta).join(', ');
-    final textos = Theme.of(context).textTheme;
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: InkWell(
@@ -24,11 +30,11 @@ class CenterCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6,
-                offset: Offset(0, 2),
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
               ),
             ],
           ),
@@ -37,7 +43,7 @@ class CenterCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  centro.rutaImagen,
+                  rutaImagen,
                   width: 70,
                   height: 70,
                   fit: BoxFit.cover,
@@ -58,15 +64,22 @@ class CenterCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      centro.nombre,
-                      style: textos.titleMedium,
+                      nombre,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textoPrincipal,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      centro.direccion,
-                      style: textos.bodySmall,
+                      direccion,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textoSecundario,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -74,8 +87,8 @@ class CenterCard extends StatelessWidget {
                     Text(
                       materiales,
                       style: const TextStyle(
-                        color: AppColors.primario,
                         fontSize: 12,
+                        color: AppColors.primario,
                       ),
                     ),
                   ],

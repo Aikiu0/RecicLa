@@ -1,11 +1,9 @@
-import 'tipo_material.dart';
-
-class RecycleEntry {
-  final TipoMaterial material;
+class Registro {
+  final String material;
   final double kilos;
   final DateTime fecha;
 
-  const RecycleEntry({
+  const Registro({
     required this.material,
     required this.kilos,
     required this.fecha,
