@@ -18,6 +18,10 @@ class AppSpacing {
 ThemeData buildReciclaTheme() {
   return ThemeData(
     useMaterial3: true,
+    splashFactory: NoSplash.splashFactory,
+    inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+    ),
     scaffoldBackgroundColor: AppColors.fondo,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primario,
@@ -42,6 +46,7 @@ ThemeData buildReciclaTheme() {
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        animationDuration: Duration.zero,
       ),
     ),
   );

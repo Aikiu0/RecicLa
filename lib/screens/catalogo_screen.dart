@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/centro_card.dart';
+import '../core/opcion_chip.dart';
 import '../models/centro_model.dart';
 import '../data/centro_repo.dart';
 import 'detalle_screen.dart';
@@ -63,10 +64,10 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
                   children: filtros.map((material) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 8),
-                      child: ChoiceChip(
-                        label: Text(material),
-                        selected: material == matSelec,
-                        onSelected: (_) {
+                      child: OpcionChip(
+                        texto: material,
+                        seleccionado: material == matSelec,
+                        onTap: () {
                           setState(() {
                             matSelec = material;
                           });
