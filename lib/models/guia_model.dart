@@ -10,8 +10,7 @@ class GuiaMaterial {
   });
 }
 
-const String fuenteGuia =
-    'Fuente: PENDIENTE (documento, institucion y anio que consultaron)';
+const String fuenteGuia = 'Fuente: RESECO';
 
 const List<GuiaMaterial> guiaDemo = [
   GuiaMaterial(
